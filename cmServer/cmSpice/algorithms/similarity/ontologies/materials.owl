@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/guille/ontologies/2022/12/materials#"
+     xml:base="http://www.semanticweb.org/guille/ontologies/2022/12/materials"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Acrylic -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Acrylic">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plastic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Aluminium -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Aluminium">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Metal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Birch -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Birch">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Wood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Bronze -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Bronze">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Metal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Burlap -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Burlap">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Fabric"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Canvas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Canvas">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Fabric"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Ceramics -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Ceramics">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#NonOrganic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Clay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Clay">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Cork -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Cork">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Wood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Cotton -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Cotton">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Fabric"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Enamel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Enamel">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Ceramics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Fabric -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Fabric">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Organic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Faience -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Faience">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Ceramics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Fiberglass -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Fiberglass">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plastic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Glass -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Glass">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#NonOrganic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Iron -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Iron">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Metal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Leather -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Leather">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Organic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Marble -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Marble">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Material -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Material"/>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Melamine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Melamine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plastic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Metal -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Metal">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Material"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#NonMetal -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#NonMetal">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Material"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#NonOrganic -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#NonOrganic">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#NonMetal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Organic -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Organic">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#NonMetal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Paper -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Paper">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Organic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Pine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Pine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Wood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plaster -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plaster">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plastic -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plastic">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Organic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plexiglass -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plexiglass">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plastic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plywood -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plywood">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Wood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Porcelain -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Porcelain">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Ceramics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Resin -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Resin">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Plastic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Rock -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Rock">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#NonOrganic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Silver -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Silver">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Metal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Sponge -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Sponge">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Organic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Stoneware -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Stoneware">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Ceramics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Teak -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Teak">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Wood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Video -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Video">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Material"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Wax -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Wax">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Organic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Wood -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Wood">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Organic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Wool -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Wool">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Organic"/>
+    </owl:Class>
+
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Redclay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Redclay">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#NonOrganic"/>
+    </owl:Class>
+
+    <!-- http://www.semanticweb.org/guille/ontologies/2022/12/materials#Polyesterivanu -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Polyesterivanu">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/guille/ontologies/2022/12/materials#Fabric"/>
+    </owl:Class>
+
+
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

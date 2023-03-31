@@ -1,7 +1,7 @@
 const idParam = 'communityId';
-const Communities = require('../service/CommunitiesService.js');
-const Flags = require('../service/FlagsService.js');
-var jobManager = require('./jobsRoute/jobsManager.js');
+const Communities = require('../service/communitiesService.js');
+const Flags = require('../service/flagsService.js');
+const JobManager = require('./jobsRoute/jobsManager.js');
 
 module.exports.getCommunities = function getCommunities(req, res, next) {
   Flags.getFlags()
@@ -16,7 +16,7 @@ module.exports.getCommunities = function getCommunities(req, res, next) {
           });
       }
       else {
-        jobManager.createJob(0, "getCommunities")
+        JobManager.createJob(0, "getCommunities")
           .then(function (path) {
             res.status(202).send(path);
           })
@@ -35,14 +35,13 @@ module.exports.getCommunityById = function getCommunityById(req, res, next) {
   Communities.getCommunityById(communityId)
     .then(function (response) {
       var community = response
-      console.log(community.perspectiveId)
-      Flags.getFlagsById(community.perspectiveId)
+      Flags.getFlagById(community.perspectiveId)
         .then(function (flag) {
           if (flag == null) { // flag does not exist => no update needed
             res.status(200).send(community);
           }
           else { //flag exist
-            jobManager.createJob(communityId, "getCommunityById")
+            JobManager.createJob(communityId, "getCommunityById")
               .then(function (path) {
                 res.status(202).send(path);
               })
@@ -52,7 +51,7 @@ module.exports.getCommunityById = function getCommunityById(req, res, next) {
           }
         })
         .catch(function (response) {
-          console.error("Communities.getCommunityById -> Flags.getFlagsById: error: " + response)
+          console.error("Communities.getCommunityById -> Flags.getFlagById: error: " + response)
         });
     })
     .catch(function (response) {
@@ -70,13 +69,13 @@ module.exports.listCommunityUsers = function listCommunityUsers(req, res, next) 
       Communities.getCommunityById(communityId)
         .then(function (response) {
           var community = response;
-          Flags.getFlagsById(community.perspectiveId)
+          Flags.getFlagById(community.perspectiveId)
             .then(function (flag) {
               if (flag == null) { // flag does not exist => no update needed
                 res.status(200).send(users);
               }
               else { //flag exist
-                jobManager.createJob(communityId, "listCommunityUsers")
+                JobManager.createJob(communityId, "listCommunityUsers")
                   .then(function (path) {
                     res.status(202).send(path);
                   })
@@ -86,7 +85,7 @@ module.exports.listCommunityUsers = function listCommunityUsers(req, res, next) 
               }
             })
             .catch(function (response) {
-              console.error("Communities.listCommunityUsers -> Flags.getFlagsById: error: " + response)
+              console.error("Communities.listCommunityUsers -> Flags.getFlagById: error: " + response)
             });
         })
     })

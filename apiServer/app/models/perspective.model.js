@@ -8,6 +8,8 @@ module.exports = mongoose => {
         params: [
           String
         ],
+        weight: String,
+        weightArtworks: String
       },
       similarity_functions: [{
         _id: false,
@@ -15,7 +17,10 @@ module.exports = mongoose => {
           name: String,
           weight: Number,
           params: [
-            String
+            {
+              artworkId: String,
+              att_type: String
+            }
           ],
           on_attribute: {
             att_name: String,
@@ -43,7 +48,8 @@ module.exports = mongoose => {
           interaction_object: {
             att_name: String,
             att_type: String
-          }
+          },
+          dissimilar: Boolean
         }
       }]
     }, { minimize: false }

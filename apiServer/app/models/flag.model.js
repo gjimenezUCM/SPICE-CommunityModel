@@ -3,7 +3,8 @@ module.exports = mongoose => {
     {
       perspectiveId: String,
       userid: String,
-      needToprocess: Boolean
+      needToProcess: Boolean,
+      error: String
     }
   );
 
@@ -18,10 +19,9 @@ module.exports = mongoose => {
   // Access mongobd and retrieve requested flag
   return {
     insertFlag: function (data, onSuccess, onError) {
-      // console.log(json);
       Flags.create(data, function (err, res) {
         if (err) {
-          console.log("insertFlag: error");
+          console.error("insertFlag: error");
           onError("insertFlag:" + user);
         }
         else {
@@ -29,15 +29,48 @@ module.exports = mongoose => {
         }
       });
     },
-    checkFlag: function (onSuccess, onError) {
+
+    checkFlags: function (onSuccess, onError) {
       Flags.find({}, function (error, data) {
         // var res = JSON.stringify(data)
         if (error) {
+          console.error("checkFlags: error");
           onError("checkFlag:" + error);
         } else {
           if (Object.keys(data).length > 0) {
-            // console.log(data.toJSON())
             onSuccess(data);
+          }
+          else {
+            onSuccess(null);
+          }
+        }
+      }).lean();
+    },
+
+    checkFlagsWithoutErrors: function (onSuccess, onError) {
+      Flags.find({ 'error': 'N/D' }, function (error, data) {
+        if (error) {
+          console.error("checkFlagsWithoutErrors: error");
+          onError("checkFlagsWithoutErrors:" + error);
+        } else {
+          if (Object.keys(data).length > 0) {
+            onSuccess(data);
+          }
+          else {
+            onSuccess(null);
+          }
+        }
+      }).lean();
+    },
+
+    checkFlagById: function (id, onSuccess, onError) {
+      Flags.findOne({ "perspectiveId": id }, { projection: { _id: 0 } }, function (error, data) {
+        if (error) {
+          console.error("checkFlagById: error");
+          onError("checkFlagById:" + error);
+        } else {
+          if (data) {
+            onSuccess(data.toJSON());
           }
           else {
             onSuccess(null);
@@ -45,20 +78,14 @@ module.exports = mongoose => {
         }
       });
     },
-    checkFlagById: function (id, onSuccess, onError) {
-      // console.log("id " + id)
-      Flags.findOne({ "perspectiveId": id }, { projection: { _id: 0 } }, function (error, data) {
+
+    removeFlagById: function (id, onSuccess, onError) {
+      Flags.deleteOne({ "_id": id }, function (error, data) {
         if (error) {
-          console.log("errorHere")
-          onError("checkFlagById:" + error);
+          console.error("removeFlagById: error");
+          onError("removeFlagById:" + error);
         } else {
-          if (data) {
-            console.log(data.toJSON())
-            onSuccess(data.toJSON());
-          }
-          else {
-            onSuccess(null);
-          }
+          onSuccess(null);
         }
       });
     }

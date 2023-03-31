@@ -1,29 +1,33 @@
 //const Enforcer = require('openapi-enforcer');
 //const EnforcerMiddleware = require('openapi-enforcer-middleware');
 
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
-require("dotenv").config();
+const jobManager = require('./controllers/jobsRoute/jobsManager.js');
 
 const path = require('path');
-const jobManager = require('./controllers/jobsRoute/jobsManager.js');
+
+require("dotenv").config();
 
 const {
   middleware: openApiMiddleware,
   resolvers,
 } = require('express-openapi-validator');
+const fs = require("fs");
 
 const apiSpec = path.resolve(__dirname, './api/openapi.yaml');
 
 async function initServer() {
   const app = express();
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json({ limit: 10 * 1024 * 1024 })); //10 Mb
+
+
+
+  app.use(bodyParser.urlencoded({limit: '500mb', extended: true, parameterLimit:50000}));
+  app.use(bodyParser.json({limit: '500mb'}));
   app.set("apiSpec", apiSpec);
-
-
-  const cors = require('cors');
   app.use(cors());
+  // app.use(express.static(path.join(__dirname, "public")));
 
   // Any paths defined in your openapi.yml will validate and parse the request
   // before it calls your route code.
@@ -41,7 +45,7 @@ async function initServer() {
     //   resolver: resolvers.modulePathResolver,
     // },
   });
-  app.use(middleware);
+  // app.use(middleware);
 
 
   // Catch errors
@@ -52,6 +56,8 @@ async function initServer() {
 
   //app.set("enforcer", enforcerMiddleware);
   require("./routes/routes.js")(app);
+
+
 
   app.use((err, req, res, next) => {
     // format errors

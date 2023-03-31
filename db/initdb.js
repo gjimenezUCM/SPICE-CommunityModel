@@ -36,5 +36,10 @@ db.flags.deleteMany({});
 db.createCollection('distanceMatrixes', { capped: false });
 db.distanceMatrixes.deleteMany({});
 
+db.createCollection('artworkDistanceMatrixes', { capped: false });
+db.artworkDistanceMatrixes.deleteMany({});
+
+db.createCollection('interactionDistances', { capped: false });
+db.interactionDistances.deleteMany({});
 
 

@@ -1,0 +1,13 @@
+pymongo==4.2.0
+requests==2.28.1
+pandas==1.4.3
+networkx==2.8.5
+numpy==1.23.2
+imageio==2.21.1
+scikit-learn==1.1.2
+scikit-learn-extra==0.2.0
+gephistreamer==2.0.3
+ipywidgets==7.7.0
+markov-clustering==0.0.6.dev0
+fuzzy-c-means==1.6.4
+Owlready2==0.37

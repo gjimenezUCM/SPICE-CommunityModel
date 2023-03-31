@@ -72,7 +72,6 @@ module.exports = mongoose => {
                     let e = element.toJSON();
                     e.id = e.perspectiveId
                     delete e.perspectiveId
-                    // console.log(e);
                     items[i] = e;
                     i++;
                 });
@@ -86,7 +85,6 @@ module.exports = mongoose => {
                     onError(error);
                 } else {
                     if (data) {
-                        // console.log(data)
                         onSuccess(data.toJSON());
                     }
                     else {

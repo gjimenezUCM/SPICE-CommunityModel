@@ -1,14 +1,20 @@
 import json
 import requests
-import config as cf
+import sys
+from config import configDict
+from requests.auth import HTTPBasicAuth
 
 def main():
+    if len(sys.argv) < 2 :
+        print("USAGE: python",__file__,"<museumName>")
+        return -1
 
+    museum = sys.argv[1]
     #--------------------------------------------------------------------------------------------------------------------------
     #    Select Configuration dictionary for a case study
     #--------------------------------------------------------------------------------------------------------------------------
     
-    configData = cf.DMH_CONFIG
+    configData = configDict[museum]
     
     #--------------------------------------------------------------------------------------------------------------------------
 
@@ -18,6 +24,7 @@ def main():
 
     # Change Sample Perspective
     filename = 'samplePerspective.json'
+    auth = HTTPBasicAuth(configData['user'], configData['pass'])
 
     #--------------------------------------------------------------------------------------------------------------------------
     #    Insert perspective
@@ -27,7 +34,7 @@ def main():
     file = open(route)
     perspective = json.load(file)
     
-    response = requests.post("{}/v1.1/perspective".format(server), json=perspective)
+    response = requests.post("{}/v2.0/perspectives".format(server), json=perspective, auth=auth)
     print(response)
     print(response.text)
     

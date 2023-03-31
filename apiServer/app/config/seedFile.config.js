@@ -1,6 +1,6 @@
 
 module.exports = {
-  filename: "seedFileDMH.json"
+  filename: "seedFile.json"
 };
 
 

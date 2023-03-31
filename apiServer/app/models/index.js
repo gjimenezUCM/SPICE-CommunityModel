@@ -11,6 +11,7 @@ db.similarityDAO = require("./similarity.model.js")(mongoose);
 db.usersDAO = require("./users.model.js")(mongoose);
 db.perspectivesDAO = require("./perspective.model.js")(mongoose);
 db.flagDAO = require("./flag.model.js")(mongoose);
+db.logsDAO = require("./logs.model.js")(mongoose);
 
 // Connects to mongoDB
 module.exports = {
@@ -35,5 +36,6 @@ module.exports = {
     similarities: db.similarityDAO,
     users: db.usersDAO,
     perspectives: db.perspectivesDAO,
-    flag: db.flagDAO
+    flag: db.flagDAO,
+    logs: db.logsDAO
 };

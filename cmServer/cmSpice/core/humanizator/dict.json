@@ -1,0 +1,46 @@
+{
+    "keys": {
+            "Demographics.DemographicsReligous": "Religious demography",
+            "Demographics.DemographicsPolitics": "Political demography",
+            "demographics.explicit-community": "Explicit community",
+            "ANatPridePro": "Supports Roman Rebellion because of pride.",
+            "BReligousPro": "Supports Roman Rebellion because of religion.",
+            "CRealisticPro": "Supports Roman Rebellion because of realistic reasons.",
+            "EReligousNeg": "Against the Roman Rebellion because of religion.",
+            "DExtremistNeg": "Against the Roman Rebellion because of the dangers of turning to extremism.",
+            "FRealisticNeg": "Against the Roman Rebellion because of realistic reasons.",
+            "NoOpinion": "No opinion"    
+    },
+    "values": [
+        {
+            "users explicit_community Demographics.DemographicsPolitics": {
+                "VL": "Very left",
+                "L": "Left",
+                "C": "Center",
+                "R": "Right",
+                "VR": "Very right",
+                "DK": "Dont know"
+            }
+        },
+        {
+            "users explicit_community Demographics.DemographicsReligous": {
+                "S": "Secular",
+                "R": "Religious",
+                "M": "Moderated",
+                "VR": "Very religious",
+                "H": "Haredi"
+            }
+        },
+        {
+            "users implicit_community Beliefs.beliefR": {
+                "ANatPridePro": "Supports Roman Rebellion because of pride.",
+                "BReligousPro": "Supports Roman Rebellion because of religion.",
+                "CRealisticPro": "Supports Roman Rebellion because of realistic reasons.",
+                "EReligousNeg": "Against the Roman Rebellion because of religion.",
+                "DExtremistNeg": "Against the Roman Rebellion because of the dangers of turning to extremism.",
+                "FRealisticNeg": "Against the Roman Rebellion because of realistic reasons.",
+                "NoOpinion": "No opinion"
+            }
+        }
+    ]
+}

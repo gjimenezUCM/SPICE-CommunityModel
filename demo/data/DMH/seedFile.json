@@ -1,0 +1,505 @@
+{
+	"user_attributes": [
+	  {
+		"att_name": "demographics.explicit-community",
+		"att_type": "String"
+	  }
+	],
+	"interaction_similarity_functions": [
+	  {
+		"sim_function": {
+		  "name": "ExtendedPlutchikEmotionSimilarity",
+		  "params": [],
+		  "on_attribute": {
+			"att_name": "interest.emotions",
+			"att_type": "dict"
+		  },
+		  "interaction_object": {
+			"att_name": "id",
+			"att_type": "String"
+		  }
+		}
+	  },
+	  {
+		"sim_function": {
+		  "name": "SentimentSimilarityDAO",
+		  "params": [],
+		  "on_attribute": {
+			"att_name": "interest.sentiment",
+			"att_type": "dict"
+		  },
+		  "interaction_object": {
+			"att_name": "id",
+			"att_type": "String"
+		  }
+		}
+	  },
+	  {
+		"sim_function": {
+		  "name": "ValuesSimilarity",
+		  "params": [],
+		  "on_attribute": {
+			"att_name": "interest.MFT_Values",
+			"att_type": "List"
+		  },
+		  "interaction_object": {
+			"att_name": "id",
+			"att_type": "String"
+		  }
+		}
+	  }
+	],
+	"artwork_attributes": [
+	  {
+		"on_attribute": {
+		  "att_name": "Object",
+		  "att_type": "String"
+		},
+		"sim_function": [
+		  {
+			"name": "EqualSimilarityDAO",
+			"params": [],
+			"default": true
+		  }
+		]
+	  },
+	  {
+		"on_attribute": {
+		  "att_name": "Object group",
+		  "att_type": "String"
+		},
+		"sim_function": [
+		  {
+			"name": "EqualSimilarityDAO",
+			"params": [],
+			"default": true
+		  }
+		]
+	  },
+	  {
+		"on_attribute": {
+		  "att_name": "author",
+		  "att_type": "String"
+		},
+		"sim_function": [
+		  {
+			"name": "EqualSimilarityDAO",
+			"params": [],
+			"default": true
+		  }
+		]
+	  },
+	  {
+		"on_attribute": {
+		  "att_name": "Production date",
+		  "att_type": "float"
+		},
+		"sim_function": [
+		  {
+			"name": "NumberSimilarityDAO",
+			"params": [],
+			"default": true
+		  },
+		  {
+			"name": "EqualSimilarityDAO",
+			"params": [],
+			"default": false
+		  }
+		]
+	  },
+	  {
+		"on_attribute": {
+		  "att_name": "Collection",
+		  "att_type": "String"
+		},
+		"sim_function": [
+		  {
+			"name": "EqualSimilarityDAO",
+			"params": [],
+			"default": true
+		  }
+		]
+	  },
+	  {
+		"on_attribute": {
+		  "att_name": "Manufacturer",
+		  "att_type": "String"
+		},
+		"sim_function": [
+		  {
+			"name": "EqualSimilarityDAO",
+			"params": [],
+			"default": true
+		  }
+		]
+	  },
+	  {
+		"on_attribute": {
+		  "att_name": "Materials",
+		  "att_type": "List"
+		},
+		"sim_function": [
+		  {
+			"name": "OntologySimilarity",
+			"params": [],
+			"default": true
+		  },
+		  {
+			"name": "EqualSimilarityDAO",
+			"params": [],
+			"default": false
+		  }
+		]
+	  },
+	  {
+		"on_attribute": {
+		  "att_name": "Colour",
+		  "att_type": "List"
+		},
+		"sim_function": [
+		  {
+			"name": "ColorSimilarity",
+			"params": [],
+			"default": true
+		  },
+		  {
+			"name": "EqualSimilarityDAO",
+			"params": [],
+			"default": false
+		  }
+		]
+	  },
+	  {
+		"on_attribute": {
+		  "att_name": "year",
+		  "att_type": "float"
+		},
+		"sim_function": [
+		  {
+			"name": "DecadeSimilarityDAO",
+			"params": [],
+			"default": true
+		  },
+		  {
+			"name": "NumberSimilarityDAO",
+			"params": [],
+			"default": false
+		  },
+		  {
+			"name": "EqualSimilarityDAO",
+			"params": [],
+			"default": false
+		  }
+		]
+	  }
+	],
+  
+	"artworks": [
+	  {
+		  "name": "1610",
+		  "id": "22769"
+	  },
+	  {
+		  "name": "1618",
+		  "id": "A652"
+	  },
+	  {
+		  "name": "1718",
+		  "id": "10026"
+	  },
+	  {
+		  "name": "2744 cocktail glass",
+		  "id": "12595"
+	  },
+	  {
+		  "name": "Asa Futura",
+		  "id": "20260"
+	  },
+	  {
+		  "name": "BAU, Muumi",
+		  "id": "44185"
+	  },
+	  {
+		  "name": "Block",
+		  "id": "38467"
+	  },
+	  {
+		  "name": "Bo boo",
+		  "id": "41581"
+	  },
+	  {
+		  "name": "C 1810 B",
+		  "id": "13154"
+	  },
+	  {
+		  "name": "Cast Iron Pot",
+		  "id": "C370"
+	  },
+	  {
+		  "name": "Fasaani 939.015.91 (Pheasant)",
+		  "id": "13081"
+	  },
+	  {
+		  "name": "Finch vase",
+		  "id": "16101"
+	  },
+	  {
+		  "name": "Fiskars scissors",
+		  "id": "44174"
+	  },
+	  {
+		  "name": "Flora (model S)",
+		  "id": "44181"
+	  },
+	  {
+		  "name": "Garbage Bin",
+		  "id": "44167"
+	  },
+	  {
+		  "name": "High chair 616",
+		  "id": "9226"
+	  },
+	  {
+		  "name": "I-lasi 2004",
+		  "id": "ILM7606"
+	  },
+	  {
+		  "name": "Iris (model U2)",
+		  "id": "44175"
+	  },
+	  {
+		  "name": "Japanese teapot",
+		  "id": "B561"
+	  },
+	  {
+		  "name": "Jerry",
+		  "id": "32030"
+	  },
+	  {
+		  "name": "Jokapoika, fabric: Piccolo",
+		  "id": "41821"
+	  },
+	  {
+		  "name": "Jopo",
+		  "id": "11780"
+	  },
+	  {
+		  "name": "Katrilli",
+		  "id": "44180"
+	  },
+	  {
+		  "name": "Lappkojs",
+		  "id": "38518"
+	  },
+	  {
+		  "name": "Liekki (Flame)",
+		  "id": "17876"
+	  },
+	  {
+		  "name": "MK",
+		  "id": "AM1699"
+	  },
+	  {
+		  "name": "Mobira Talkman 450",
+		  "id": "41379"
+	  },
+	  {
+		  "name": "Model 4, fabric: Sormus",
+		  "id": "27303"
+	  },
+	  {
+		  "name": "Monrepos, fabric: Keidas",
+		  "id": "30074"
+	  },
+	  {
+		  "name": "Myrna (malli AX)",
+		  "id": "44176"
+	  },
+	  {
+		  "name": "Nelj\u00e4 v\u00e4ri\u00e4 (Four Colours)",
+		  "id": "32628"
+	  },
+	  {
+		  "name": "Nokia 9210 Communicator",
+		  "id": "41377"
+	  },
+	  {
+		  "name": "Paimio / Armchair 41",
+		  "id": "9249"
+	  },
+	  {
+		  "name": "Pastille",
+		  "id": "44165"
+	  },
+	  {
+		  "name": "Pehtoori 2615",
+		  "id": "8182"
+	  },
+	  {
+		  "name": "Pirkka",
+		  "id": "44164"
+	  },
+	  {
+		  "name": "Planetaariset Laaksot (Planetary Valleys)",
+		  "id": "38267"
+	  },
+	  {
+		  "name": "P\u00e4ssi (Ram)",
+		  "id": "41768"
+	  },
+	  {
+		  "name": "Raitakaita",
+		  "id": "44184"
+	  },
+	  {
+		  "name": "Rautaristi (Iron Cross)",
+		  "id": "16850"
+	  },
+	  {
+		  "name": "Rice porcelain cup (model FK/VA)",
+		  "id": "44177"
+	  },
+	  {
+		  "name": "Ruska (model S)",
+		  "id": "44179"
+	  },
+	  {
+		  "name": "Salmenhaara vase",
+		  "id": "17248"
+	  },
+	  {
+		  "name": "Sauna stool",
+		  "id": "9321"
+	  },
+	  {
+		  "name": "Savonia",
+		  "id": "44168"
+	  },
+	  {
+		  "name": "Savoy vase",
+		  "id": "41793"
+	  },
+	  {
+		  "name": "Scandia",
+		  "id": "44171"
+	  },
+	  {
+		  "name": "Seebra (Zebra)",
+		  "id": "32627"
+	  },
+	  {
+		  "name": "Simpukka (Sea Shell)",
+		  "id": "33288"
+	  },
+	  {
+		  "name": "Solifer Export",
+		  "id": "32271"
+	  },
+	  {
+		  "name": "Stool 60",
+		  "id": "44163"
+	  },
+	  {
+		  "name": "Subway bench",
+		  "id": "41816"
+	  },
+	  {
+		  "name": "Suo (Marsh)",
+		  "id": "32361"
+	  },
+	  {
+		  "name": "Suopursuja (Marsh Tea)",
+		  "id": "16851"
+	  },
+	  {
+		  "name": "Teema (model BAU)",
+		  "id": "44178"
+	  },
+	  {
+		  "name": "Think and drink",
+		  "id": "44182"
+	  },
+	  {
+		  "name": "Ultima Thule (18 cl)",
+		  "id": "14218"
+	  },
+	  {
+		  "name": "Ultima Thule 2332",
+		  "id": "14219"
+	  },
+	  {
+		  "name": "Valkoiset hevoset (White Horses)",
+		  "id": "13906"
+	  },
+	  {
+		  "name": "Viimeinen ateria (The Last Meal)",
+		  "id": "35971"
+	  },
+	  {
+		  "name": "W19",
+		  "id": "B548"
+	  },
+	  {
+		  "name": "Warm",
+		  "id": "44183"
+	  },
+	  {
+		  "name": "Windbreaker",
+		  "id": "44166"
+	  },
+	  {
+		  "name": "i-102 (Aroma 2002)",
+		  "id": "7762"
+	  }
+  ],
+  
+  
+	"algorithm": [
+	  {
+		"name": "affinityPropagation",
+		"params": [],
+		"default": false
+	  },
+	  {
+		"name": "agglomerative",
+		"params": [],
+		"default": true
+	  },
+	  {
+		"name": "birch",
+		"params": [],
+		"default": false
+	  },
+	  {
+		"name": "dbscan",
+		"params": [],
+		"default": false
+	  },
+	  {
+		"name": "fuzzyCMeans",
+		"params": [],
+		"default": false
+	  },
+	  {
+		"name": "kmedoids",
+		"params": [],
+		"default": false
+	  },
+	  {
+		"name": "markov",
+		"params": [],
+		"default": false
+	  },
+	  {
+		"name": "optics",
+		"params": [],
+		"default": false
+	  },
+	  {
+		"name": "spectral",
+		"params": [],
+		"default": false
+	  }
+	],
+	"BeliefStructure": false
+  }

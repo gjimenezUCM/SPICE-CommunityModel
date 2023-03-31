@@ -1,0 +1,133 @@
+{
+  "user_attributes": [
+    {
+      "att_name": "demographics.school",
+      "att_type": "String"
+    },
+    {
+      "att_name": "demographics.grade",
+      "att_type": "String"
+    }
+  ],
+  "interaction_similarity_functions": [
+    {
+      "sim_function": {
+        "name": "EqualSimilarityDAO",
+        "params": [],
+        "on_attribute": {
+          "att_name": "demographics.school",
+          "att_type": "String"
+        },
+        "interaction_object": {
+          "att_name": "id",
+          "att_type": "String"
+        }
+	  }
+    }
+  ],
+  "artwork_attributes": [
+    {
+      "on_attribute": {
+        "att_name": "demographics.water_electricity",
+        "att_type": "String"
+      },
+      "sim_function": [
+        {
+          "name": "DiscreteDistributionSimilarity",
+          "params": [],
+          "default": true
+        },
+        {
+          "name": "EqualSimilarityDAO",
+          "params": [],
+          "default": false
+        }
+      ]
+    },
+    {
+      "on_attribute": {
+        "att_name": "demographics.food",
+        "att_type": "String"
+      },
+      "sim_function": [
+        {
+          "name": "DiscreteDistributionSimilarity",
+          "params": [],
+          "default": true
+        },
+        {
+          "name": "EqualSimilarityDAO",
+          "params": [],
+          "default": false
+        }
+      ]
+    },
+    {
+      "on_attribute": {
+        "att_name": "demographics.consumption",
+        "att_type": "String"
+      },
+      "sim_function": [
+        {
+          "name": "DiscreteDistributionSimilarity",
+          "params": [],
+          "default": true
+        },
+        {
+          "name": "EqualSimilarityDAO",
+          "params": [],
+          "default": false
+        }
+      ]
+    }
+  ],
+  "algorithm": [
+    {
+      "name": "affinityPropagation",
+      "params": [],
+      "default": false
+    },
+    {
+      "name": "agglomerative",
+      "params": [],
+      "default": true
+    },
+    {
+      "name": "birch",
+      "params": [],
+      "default": false
+    },
+    {
+      "name": "dbscan",
+      "params": [],
+      "default": false
+    },
+    {
+      "name": "fuzzyCMeans",
+      "params": [],
+      "default": false
+    },
+    {
+      "name": "kmedoids",
+      "params": [],
+      "default": false
+    },
+    {
+      "name": "markov",
+      "params": [],
+      "default": false
+    },
+    {
+      "name": "optics",
+      "params": [],
+      "default": false
+    },
+    {
+      "name": "spectral",
+      "params": [],
+      "default": false
+    }
+  ],
+  "artworks": [],
+  "BeliefStructure": true
+}

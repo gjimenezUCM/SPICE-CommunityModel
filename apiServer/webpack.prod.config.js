@@ -62,6 +62,10 @@ module.exports = {
             to: 'api',
             context: "app/"
           },
+           // {
+           //   from: 'node_modules/swagger-ui-dist/',
+           //   to: 'node_modules/swagger-ui-dist/'
+           // }
         ],
       }),
       // Limpiamos el directorio destino. 

@@ -1,6 +1,6 @@
-const Perspectives = require('../../service/PerspectivesService.js');
-const Communities = require('../../service/CommunitiesService');
-const CommunitiesVis = require('../../service/CommunitiesVisualizationService.js');
+const Perspectives = require('../../service/perspectivesService.js');
+const Communities = require('../../service/communitiesService');
+const CommunitiesVis = require('../../service/communitiesVisualizationService.js');
 
 /**
  * Get specified promises that return requested data.
@@ -8,34 +8,31 @@ const CommunitiesVis = require('../../service/CommunitiesVisualizationService.js
  * @param {string} param parameters
  * @returns requested data
  */
-exports.getData = function(request, param) {
+export function getData(request, param) {
     switch (request) {
         case "getPerspectives":
             return Perspectives.getPerspectives();
-            break;
         case "getPerspectiveById":
             return Perspectives.getPerspectiveById(param);
-            break;
         case "listPerspectiveCommunities":
             return Perspectives.listPerspectiveCommunities(param);
-            break;
         case "getCommunities":
             return Communities.getCommunities();
-            break;
         case "getCommunityById":
             return Communities.getCommunityById(param);
-            break;
         case "listCommunityUsers":
             return Communities.listCommunityUsers(param);
-            break;
         case "getFilesIndex":
             return CommunitiesVis.getIndex();
-            break;
         case "getFileById":
             return CommunitiesVis.getById(param);
-            break;
+        case "error":
+            return new Promise(function (resolve) {
+                resolve(param)
+            });
         default:
-            return "getData not defined"
-            break;
+            return new Promise(function (resolve) {
+                resolve("getData not defined")
+            });
     }
 }

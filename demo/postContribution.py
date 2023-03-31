@@ -1,18 +1,24 @@
 import requests
 import json
-import config as cf
+import sys
+from config import configDict
+from requests.auth import HTTPBasicAuth
 
 #--------------------------------------------------------------------------------------------------------------------------
 #    Used to post contribution data (dict of interaction_attributes)
 #--------------------------------------------------------------------------------------------------------------------------
 
 def main():
-    
+    if len(sys.argv) < 2 :
+        print("USAGE: python",__file__,"<museumName>")
+        return -1
+
+    museum = sys.argv[1]
     #--------------------------------------------------------------------------------------------------------------------------
     #    Select Configuration dictionary for a case study
     #--------------------------------------------------------------------------------------------------------------------------
     
-    configData = cf.DMH_CONFIG
+    configData = configDict[museum]
     
     #--------------------------------------------------------------------------------------------------------------------------
 
@@ -20,7 +26,7 @@ def main():
     server = configData["server"]
     museum = configData["museum"]
     filename = 'ugcContributions.json'
-    
+    auth = HTTPBasicAuth(configData['user'], configData['pass'])
     #--------------------------------------------------------------------------------------------------------------------------
     #    Read data
     #--------------------------------------------------------------------------------------------------------------------------
@@ -40,7 +46,7 @@ def main():
     for ctype in postDictKeys:
         contribsDict = postDict[ctype]
         for key, value in contribsDict.items():
-            response=requests.post(f'{server}/v1.1/users/{key}/update-generated-content', json = value)
+            response=requests.post(f'{server}/v2.0/users/{key}/update-generated-content', json = value, auth=auth)
             
             print("key: " + str(key))
             print("value: " + str(value))

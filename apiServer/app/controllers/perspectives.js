@@ -1,7 +1,7 @@
 const idParam = 'perspectiveId';
-const Perspectives = require('../service/PerspectivesService.js');
-const Flags = require('../service/FlagsService.js');
-var jobManager = require('./jobsRoute/jobsManager.js');
+const Perspectives = require('../service/perspectivesService.js');
+const Flags = require('../service/flagsService.js');
+const JobManager = require('./jobsRoute/jobsManager.js');
 
 // check if flag exist
 // if exist then update CM
@@ -19,7 +19,7 @@ module.exports.getPerspectives = function getPerspectives(req, res, next) {
           });
       }
       else {
-        jobManager.createJob(0, "getPerspectives")
+        JobManager.createJob(0, "getPerspectives")
           .then(function (path) {
             res.status(202).send(path);
           })
@@ -38,7 +38,7 @@ module.exports.getPerspectives = function getPerspectives(req, res, next) {
 // if !exist then access DB
 module.exports.getPerspectiveById = function getPerspectiveById(req, res, next) {
   const perspectiveId = req.params[idParam];
-  Flags.getFlagsById(perspectiveId)
+  Flags.getFlagById(perspectiveId)
     .then(function (response) {
       if (response == null) {
         Perspectives.getPerspectiveById(perspectiveId)
@@ -50,7 +50,7 @@ module.exports.getPerspectiveById = function getPerspectiveById(req, res, next) 
           });
       }
       else {
-        jobManager.createJob(perspectiveId, "getPerspectiveById")
+        JobManager.createJob(perspectiveId, "getPerspectiveById")
           .then(function (path) {
             res.status(202).send(path);
           })
@@ -60,7 +60,7 @@ module.exports.getPerspectiveById = function getPerspectiveById(req, res, next) 
       }
     })
     .catch(function (response) {
-      console.error("Perspectives.getPerspectiveById -> Flags.getFlagsById: error: " + response)
+      console.error("Perspectives.getPerspectiveById -> Flags.getFlagById: error: " + response)
     });
 };
 
@@ -68,8 +68,8 @@ module.exports.listPerspectiveCommunities = function listPerspectiveCommunities(
   const perspectiveId = req.params[idParam];
 
   // Check flag, if exist then access mongodb and return data
-  // if false then check if perspetive exist, create new job and return 202, and a link to that job
-  Flags.getFlagsById(perspectiveId)
+  // if false then check if perspective exist, create new job and return 202, and a link to that job
+  Flags.getFlagById(perspectiveId)
     .then(function (response) {
       if (response == null) { // flag does not exist => no update needed
         Perspectives.listPerspectiveCommunities(perspectiveId)
@@ -81,7 +81,7 @@ module.exports.listPerspectiveCommunities = function listPerspectiveCommunities(
           });
       }
       else { //flag exist
-        jobManager.createJob(perspectiveId, "listPerspectiveCommunities")
+        JobManager.createJob(perspectiveId, "listPerspectiveCommunities")
           .then(function (path) {
             res.status(202).send(path);
           })
@@ -91,21 +91,21 @@ module.exports.listPerspectiveCommunities = function listPerspectiveCommunities(
       }
     })
     .catch(function (response) {
-      console.error("Perspectives.listPerspectiveCommunities -> Flags.getFlagsById: error: " + response)
+      console.error("Perspectives.listPerspectiveCommunities -> Flags.getFlagById: error: " + response)
     });
 };
 
 // redirect post request to api_loader
-module.exports.PostPerspective = function PostPerspective(req, res, next) {
+module.exports.postPerspective = function postPerspective(req, res, next) {
   try {
+
     Perspectives.getPerspectiveById(req.body.id)
       .then(function (response) { // Perspective with that id exists
         res.status(409).send({ insertedPerspectiveId: "-Error, perspective already exist-" });
       })
-      .catch(function (response) { // Perspective with that id doesnt exist (it can be inserted)
+      .catch(function (error) { // Perspective with that id doesnt exist (it can be inserted)
         Perspectives.PostPerspective(req.body)
           .then(function (perspectiveId) {
-            console.log(perspectiveId)
             var response = { insertedPerspectiveId: perspectiveId };
             res.status(202).send(response);
           })
@@ -114,6 +114,6 @@ module.exports.PostPerspective = function PostPerspective(req, res, next) {
           });
       });
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };

@@ -182,11 +182,11 @@
         },
         {
             "sim_function": {
-                "name": "TaxonomySimilarityDAO",
+                "name": "OntologySimilarity",
                 "params": [],
                 "on_attribute": {
                     "att_name": "Materials",
-                    "att_type": "String"
+                    "att_type": "List"
                 }
             }
         },
@@ -254,5 +254,52 @@
             }
           }
         }
+    ],
+    "algorithm": [
+      {
+        "name": "affinityPropagation",
+        "params": [],
+        "default": false
+      },
+      {
+        "name": "agglomerative",
+        "params": [],
+        "default": true
+      },
+      {
+        "name": "birch",
+        "params": [],
+        "default": false
+      },
+      {
+        "name": "dbscan",
+        "params": [],
+        "default": false
+      },
+      {
+        "name": "fuzzyCMeans",
+        "params": [],
+        "default": false
+      },
+      {
+        "name": "kmedoids",
+        "params": [],
+        "default": false
+      },
+      {
+        "name": "markov",
+        "params": [],
+        "default": false
+      },
+      {
+        "name": "optics",
+        "params": [],
+        "default": false
+      },
+      {
+        "name": "spectral",
+        "params": [],
+        "default": false
+      }
     ]
 }

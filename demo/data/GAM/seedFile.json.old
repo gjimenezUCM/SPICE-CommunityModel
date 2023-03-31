@@ -1,0 +1,258 @@
+{
+    "artwork_attributes": [
+        {
+            "sim_function": {
+                "name": "EqualSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Inventary",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "EqualSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Collection",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "EqualSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "author",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "NumberSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "year",
+                    "att_type": "float"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "NumberSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Artwork_start_date",
+                    "att_type": "float"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "NumberSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Artwork_end_date",
+                    "att_type": "float"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "NumberSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Artist_birth_date",
+                    "att_type": "float"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "NumberSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Artist_death_date",
+                    "att_type": "float"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "EqualSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Gender",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "TaxonomySimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Artist_country",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "TaxonomySimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Artist_secondary_country",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "TaxonomySimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Artwork_Artistic_Movement",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "TaxonomySimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Secondary_Artwork_Artistic_Movement",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "EqualSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Technique",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "EqualSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Artwork_type",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "NumberSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Size_height",
+                    "att_type": "float"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "NumberSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Size_width",
+                    "att_type": "float"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "NumberSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Size_depth",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "TaxonomySimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "Materials",
+                    "att_type": "String"
+                }
+            }
+        },
+        {
+            "sim_function": {
+                "name": "IconClassSimilarityDAO",
+                "params": [],
+                "on_attribute": {
+                    "att_name": "iconclassArrayIDs",
+                    "att_type": "List"
+                }
+            }
+        }
+    ],
+    "user_attributes": [
+        {
+            "att_name": "demographics.Gender",
+            "att_type": "String"
+        },
+        {
+            "att_name": "demographics.Age",
+            "att_type": "String"
+        },
+        {
+            "att_name": "demographics.RelationshipWithArt",
+            "att_type": "String"
+        },
+        {
+            "att_name": "demographics.RelationshipWithMuseum",
+            "att_type": "String"
+        },
+        {
+            "att_name": "demographics.ContentInLIS",
+            "att_type": "String"
+        }
+    ],
+    "interaction_similarity_functions": [
+        {
+          "sim_function": {
+            "name": "ExtendedPlutchikEmotionSimilarityDAO",
+            "params": [
+            ],
+            "on_attribute": {
+              "att_name": "interest.itMakesMeThinkAbout.emotions",
+              "att_type": "dict"
+            },
+            "interaction_object": {
+              "att_name": "id",
+              "att_type": "String"
+            }
+          }
+        },
+        {
+          "sim_function": {
+            "name": "SentimentSimilarityDAO",
+            "params": [
+            ],
+            "on_attribute": {
+              "att_name": "interest.itMakesMeThinkAbout.sentiment",
+              "att_type": "dict"
+            },
+            "interaction_object": {
+              "att_name": "id",
+              "att_type": "String"
+            }
+          }
+        }
+    ]
+}

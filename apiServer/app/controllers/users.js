@@ -1,4 +1,4 @@
-const Users = require('../service/UsersService.js');
+const Users = require('../service/usersService.js');
 const userParam = 'userId';
 
 

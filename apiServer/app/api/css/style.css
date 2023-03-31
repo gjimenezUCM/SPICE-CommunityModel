@@ -12,3 +12,25 @@
     color: #F57D0B;
     text-decoration: none;
 }
+
+.button {
+    border: 1px solid rgb(50, 50, 159);
+    color: rgb(50, 50, 159);
+    font-weight: normal;
+    margin-left: 0.5em;
+    padding: 4px 8px;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: #e4d7c8;
+    color: #F57D0B;
+    border: 2px solid #F57D0B;
+}
+
+.button1:hover {
+    background-color: #F57D0B;
+    color: white;
+}

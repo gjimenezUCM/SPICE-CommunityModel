@@ -1,52 +1,21 @@
 'use strict';
 
-const Flags = require('../../service/FlagsService.js');
-const jobsHandler = require("./jobsHandler.js");
-
-var jobManager = require('./jobsManager.js');
-
-
+const idParam_jobId = 'jobId';
 
 var express = require('express');
-const { response } = require("express");
-const { communities } = require('../../models/index.js');
+const {response} = require("express");
+
 var router = express.Router();
 
 
-var jobPrefix = "/v1.1/jobs/";
+const Job = require("./job.js");
+
+const jobsHandler = require("./jobsHandler.js");
+var jobManager = require('./jobsManager.js');
 
 
-/**Response example templates */
-var jobStarted_Template = {
-    "job": {
-        "@uri": "/jobs/xxxxxxxx",
-        "id": "2130040",
-        "name": "Update Community Model",
-        "job-state": "STARTED",
-        "job-status": "INPROGRESS",
-        "percent-complete": "30",
-        "scheduled-start-time": "01-01-2013 10:50:45 PM GMT",
-        "start-time": "01-01-2013 10:50:55 PM GMT",
-        "end-time": "",
-        "owner": "Admin",
-        "summary": "random text"
-    }
-}
-var jobCompleted_Template = {
-    "job": {
-        "@uri": "/api/company/job-management/jobs/2130040",
-        "id": "2130040",
-        "name": "Update Resource",
-        "job-state": "COMPLETED",
-        "job-status": "SUCCESS",
-        "percent-complete": "100",
-        "scheduled-start-time": "01-01-2013 10:50:45 PM GMT",
-        "start-time": "01-01-2013 10:50:55 PM GMT",
-        "end-time": "01-01-2013 10:52:18 PM GMT",
-        "owner": "Admin",
-        "summary": "random text"
-    }
-}
+var jobPrefix = "/v2.0/jobs-manager/jobs/";
+
 
 /**Response templates */
 var jobStarted = {
@@ -55,9 +24,9 @@ var jobStarted = {
         "jobId": "xx",
         "name": "CM Update",
         "job-state": "STARTED",
-        "job-status": "INPROGRESS",
-        "start-time": "",
-        "time-to-autoremove-job": "",
+        "time-created": -1,
+        "time-completed": -1,
+        "time-to-autoremove-job": -1,
         "data": {}
     }
 }
@@ -67,47 +36,52 @@ var jobCompleted = {
         "jobId": "",
         "name": "CM Update",
         "job-state": "COMPLETED",
-        "job-status": "SUCCESS",
-        "start-time": "",
-        "time-to-autoremove-job": "",
+        "time-created": -1,
+        "time-completed": -1,
+        "time-to-autoremove-job": -1,
         "data": {}
     }
 }
 
 
 /**
- * Returns filled response template 
- * @param {Job id} jobId 
+ * Returns filled response template
+ * @param {Job} job
+ * @param {String} data
  * @returns Completed response
  */
 function generateCompletedResponse(job, data) {
-    advanceState(job);
-    // job["job-state"] = "COMPLETED";
-    // job["job-status"] = "SUCCESS";
     var response = jobCompleted;
+    var timeLeft = -1;
+    if (job.jobState !== Job.jobStates.ERROR) {
+        var msLeft = job.timeCompleted.getTime() + jobManager.timeoutAfterCompletion - (new Date().getTime());
+        var dateLeft = new Date(msLeft);
+        timeLeft = dateLeft.getMinutes() + ":" + dateLeft.getSeconds();
+    }
+    response["job"]["job-state"] = job.jobState;
     response["job"]["path"] = jobPrefix + job.jobId;
     response["job"]["jobId"] = job.jobId;
     response["job"]["data"] = data;
-    response["job"]["start-time"] = job["start-time"];
-    var timeLeft = (job["start-time"].getTime() + (5 * 60 * 1000)) - (new Date().getTime());
-    response["job"]["time-to-autoremove-job"] = timeLeft / (1000 * 60) + " minutes";
-
+    response["job"]["time-created"] = job.timeCreated;
+    response["job"]["time-completed"] = job.timeCompleted;
+    response["job"]["time-to-autoremove-job"] = timeLeft;
     return response
 }
 
 /**
- * Returns filled response template 
- * @param {string} jobId 
+ * Returns filled response template
+ * @param {Job} job
  * @returns Progress response
  */
 function generateProgressResponse(job) {
+    var data = {}
     var response = jobStarted;
+    response["job"]["job-state"] = job.jobState;
     response["job"]["path"] = jobPrefix + job.jobId;
     response["job"]["jobId"] = job.jobId;
-    response["job"]["start-time"] = job["start-time"];
-    var timeLeft = (job["start-time"].getTime() + (30 * 60 * 1000)) - (new Date().getTime());
-    response["job"]["time-to-autoremove-job"] = timeLeft / (1000 * 60) + " minutes";
-
+    response["job"]["data"] = data;
+    response["job"]["time-created"] = job.timeCreated;
+    response["job"]["time-completed"] = job.timeCompleted;
     return response
 }
 
@@ -115,87 +89,76 @@ function generateProgressResponse(job) {
 /**
  * /jobs/:job_id GET request
  * Allows to monitor job status and get data if CM update is finished.
- * 
+ *
  */
-router.get('/:job_id', function (req, res, next) {
-    console.log("List of current jobs: ");
-    console.log(JSON.stringify(jobManager.getJobs(), null, " "));
+// router.get('/:job_id', function (req, res, next) {
+module.exports.getJob = function getJob(req, res, next) {
+    const jobId = req.params[idParam_jobId]
 
-    var jobId = req.params.job_id;
-    var job = jobManager.getJob(req.params.job_id);
+    try {
+        // console.log("List of current jobs: ");
+        // console.log(JSON.stringify(jobManager.getJobs(), null, " "));
 
-    if (job == null) {
-        res.status(404).send("JobsManager: Job not found");
-    }
-    else {
-        var param = job.param;
-        var request = job.request;
-        console.log("Monitoring Job: <" + jobId + ">, from request: <" + request + ">, with param: <" + param + ">");
+        var job = jobManager.getJob(jobId);
 
-        // var checkState;
-        // if (request == "getPerspectives" || request == "getCommunities" || ...) {
-        //     checkState = Flags.getFlags();
-        // }
-        // else {
-        //     checkState = Flags.getFlagsById(param);
-        // }
+        if (job == null) {
+            res.status(404).send("JobsManager: Job not found");
+        } else {
+            console.log("Monitoring Job: <" + job.jobId + ">");
 
-        // Checks for specific flag
-        // let filter = ["getPerspectives", "getCommunities", "getFilesIndex"]
-        // if (filter.includes(request)) {
-        if (param == 0) {
-            console.log("here:" + param);
-            Flags.getFlags()
-                .then(function (data) {
-                    if (data == null) {
-                        var data = {};
-                        // Get data from mongodb if flag is positive
-                        jobsHandler.getData(request, param)
-                            .then(function (data) {
-                                // if (!job.autoremove) {
-                                //     jobManager.removeJobWithTimeout(jobId, 60 * 5); // 5 min = 60 * 5
-                                // }
-                                res.status(200).send(generateCompletedResponse(job, data));
-                            })
-                            .catch(function (error) {
-                                res.status(404).send("JobsManager: getData exception: " + error);
-                            });
-                    }
-                    else {
-                        res.send(generateProgressResponse(job));
-                    }
-                })
-                .catch(function (error) {
-                    res.status(404).send("JobsManager: flag not found: " + error);
-                });
+            if (job.jobState === Job.jobStates.INQUEUE || job.jobState === Job.jobStates.STARTED) {
+                res.send(generateProgressResponse(job));
+            } else if (job.jobState === Job.jobStates.COMPLETED || job.jobState === Job.jobStates.ERROR) {
+                jobsHandler.getData(job.request, job.param)
+                    .then(function (data) {
+                        res.status(200).send(generateCompletedResponse(job, data));
+                    })
+                    .catch(function (error) {
+                        res.status(404).send("JobsManager: getJob.getData exception: " + error);
+                    });
+            }
         }
-        else {
-            Flags.getFlagsById(param)
-                .then(function (data) {
-                    if (data == null) {
-                        var data = {};
-                        // Get data from mongodb if flag is positive
-                        jobsHandler.getData(request, param)
-                            .then(function (data) {
-                                // if (!job.autoremove) {
-                                //     jobManager.removeJobWithTimeout(jobId, 60 * 5); // 5 min
-                                // }
-                                res.status(200).send(generateCompletedResponse(job, data));
-                            })
-                            .catch(function (error) {
-                                res.status(404).send("JobsManager: getData error: " + error);
-                            });
-                    }
-                    else {
-                        res.send(generateProgressResponse(job));
-                    }
-                })
-                .catch(function (error) {
-                    res.status(404).send("JobsManager: flag not found: " + error);
-                });
-        }
-
+    } catch (error) {
+        console.error("<JobsRoute> ERROR get: " + error);
     }
-});
+// });
+};
 
-module.exports = router;
+
+module.exports.getJobs = function getJobs(req, res, next) {
+    let jobs = jobManager.getJobs();
+    let response = [];
+    let error = null;
+
+    for (let i = 0; i < jobs.length; i++) {
+        // if (jobs[i].jobState === Job.jobStates.COMPLETED || jobs[i].jobState === Job.jobStates.ERROR) {
+        //     jobsHandler.getData(jobs[i].request, jobs[i].param)
+        //         .then(function (data) {
+        //             response[i] = generateCompletedResponse(jobs[i], data);
+        //         })
+        //         .catch(function (err) {
+        //             error = "JobsManager: getJobs.getData exception: " + err
+        //         });
+        // } else {
+        response[i] = jobs[i];
+        // }
+        // if (error != null)
+        //     break;
+    }
+
+    // if (error === null) {
+    res.status(200).send(response);
+    // } else {
+    //     res.status(404).send(error);
+    // }
+
+
+}
+
+// module.exports.deleteJobs = function deleteJobs(req, res, next) {
+//     res.status(200).send("Work In Progress");
+// }
+
+
+
+// module.exports = router;
