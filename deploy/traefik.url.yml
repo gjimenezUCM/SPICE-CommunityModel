@@ -1,6 +1,6 @@
 # Extension for deploying using Traefik as inverse proxy
 #
-# It Enhances Traefik base configuration (in traefik.yml) para
+# It Enhances Traefik base configuration (in traefik.yml) 
 # for deploying services with a path different from /
 # Useful if we have several deployments for the same
 # URL ($SERVER_PUBLIC_NAME) in differente paths (in our case, http://$SERVER_PUBLIC_NAME/museumName)
