@@ -8,10 +8,13 @@ class DAO_linkedDataHub(DAO):
     """
         DAO used to extract data from linked data hub
     """
-    def __init__(self, route="https://api2.mksmart.org/object/89b71c31-4bd3-44ad-9573-420e6320e945", uuid="xxx"):
+
+    def __init__(self, route="xxx", uuid="xxx"):
         self.uuid = uuid
         super().__init__(route)
-        self.response = None
+        # self.response = None
+        if route == "xxx" or uuid == "xxx":
+            raise Exception("Route or uuid is not defined")
 
     def getData(self):
         return self.data, self.response
@@ -23,4 +26,3 @@ class DAO_linkedDataHub(DAO):
         else:
             self.data = ""
             raise Exception('LinkedDataHub response != "200"')
-

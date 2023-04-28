@@ -27,6 +27,7 @@ from cmSpice.utils.dataLoader import DataLoader
 
 from cmSpice.apiServer import getHandler
 from cmSpice.apiServer import postHandler
+from cmSpice.apiServer import deleteHandler
 
 server_loader_port = int(os.environ['CM_DOCKER_PORT'])
 server_loader_ip = "0.0.0.0"
@@ -47,6 +48,9 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         postHandler.post(self)
+
+    def do_DELETE(self):
+        deleteHandler.delete(self)
 
 
 class ForkingHTTPServer(ForkingMixIn, HTTPServer):

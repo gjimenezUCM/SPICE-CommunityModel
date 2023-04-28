@@ -27,4 +27,4 @@ services:
             - "traefik.enable=true"
             - "traefik.docker.network=${TRAEFIK_NETWORK}"
             - "traefik.http.routers.${TRAEFIK_SERVICE_ID}.rule=Host(`${SERVER_PUBLIC_NAME}`)"
-            - "traefik.http.services.${TRAEFIK_SERVICE_ID}.loadbalancer.server.port=${APP_INTERNAL_PORT:-8080}"
+            - "traefik.http.services.${TRAEFIK_SERVICE_ID}.loadbalancer.server.port=${APP_CONTAINER_PORT:-8080}"

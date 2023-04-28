@@ -1,0 +1,11 @@
+# Extension for deploying using Traefik using SSL.
+#
+# The certificate must be provided using a file provider
+# (not the docker provider using labels).
+
+version: '3.3'
+
+services:
+    app:
+        labels:
+            - "traefik.http.routers.${TRAEFIK_SERVICE_ID}.tls=true"

@@ -1,0 +1,15 @@
+version: '3.3'
+
+networks:
+  spice-hecht:
+
+services:
+  mongodb:
+    networks:
+      spice-hecht:
+  app:
+    networks:
+      spice-hecht:
+  cm:
+    networks:
+      spice-hecht:

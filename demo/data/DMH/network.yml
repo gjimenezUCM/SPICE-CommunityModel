@@ -1,0 +1,15 @@
+version: '3.3'
+
+networks:
+  spice-dmh:
+
+services:
+  mongodb:
+    networks:
+      spice-dmh:
+  app:
+    networks:
+      spice-dmh:
+  cm:
+    networks:
+      spice-dmh:

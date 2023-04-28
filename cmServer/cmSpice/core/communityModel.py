@@ -41,6 +41,7 @@ from cmSpice.dao.dao_db_similarities import DAO_db_similarity
 # ------------------
 # logger
 import logging
+import traceback
 from cmSpice.logger.logger import getLogger
 
 logger = getLogger(__name__)
@@ -76,44 +77,20 @@ class CommunityModel():
         self.percentageExplainability = percentageExplainability
 
         if ('weight' in self.perspective['algorithm']):
-            """
-            print("check weight perspective")
-            print(self.perspective['algorithm']['weight'])
-            print(type(self.perspective['algorithm']['weight']))
-            print("\n")
-            
-
-
-            print("self.percentageExplainability: " + str(self.percentageExplainability))
-            """
-
             self.percentageExplainability = float(self.perspective['algorithm']['weight'])
 
-            """
-            print("self.percentageExplainability: " + str(self.percentageExplainability))
-            print("\n")
-            """
-
-
-        print("percentage Explainability community model" + str(percentageExplainability))
-        
     def start(self):
-
         logger.info("update started")
+        try:
+            # Perspective was not found
+            if (len(self.perspective) <= 0):
+                return
 
-        # Perspective was not found
-        if (len(self.perspective) <= 0):
-            return
-
-        """
-        if (self.flag['userid'] == ""):
-            print("not doing the one that is added by default")
-            return
-        """
-
-        self.similarityMeasure = self.initializeComplexSimilarityMeasure()
-        self.distanceMatrix = self.computeDistanceMatrix()
-        self.clustering()
+            self.similarityMeasure = self.initializeComplexSimilarityMeasure()
+            self.distanceMatrix = self.computeDistanceMatrix()
+            self.clustering()
+        except Exception as e:
+            logger.error(traceback.format_exc())
 
     def getData(self):
         return self.similarityMeasure.data
@@ -135,33 +112,11 @@ class CommunityModel():
         -------
             similarityMeasure: ComplexSimilarityDAO
         """
-        print("initialize complex similarity")
-        print(self.perspective)
-        print(self.perspective['similarity_functions'])
         daoCommunityModel = DAO_db_users()
 
         # Call wrapper to distinguish for HECHT special case.
-        """
-        """
         similarityMeasureWrapper = CommunityModelSimilarity(daoCommunityModel, self.perspective)
         similarityMeasure, self.perspective = similarityMeasureWrapper.initializeComplexSimilarityMeasure()
-
-    
-        """
-        # If there are interaction_features use interactionSimilarityDAO
-        if (len(self.perspective['interaction_similarity_functions']) > 0):
-            similarityMeasure = InteractionSimilarityDAO(
-                daoCommunityModel, self.perspective)
-        # Otherwise use complexSimilarityDAO
-        else:
-            print("there are not interactions HECHT")
-            similarityDict = self.perspective['similarity_functions']
-            similarityMeasure = ComplexSimilarityDAO(
-                daoCommunityModel, similarityDict)
-        
-        """
-
-        print("similarity measure: " + str(type(similarityMeasure)))
 
         return similarityMeasure
 
@@ -193,33 +148,12 @@ class CommunityModel():
         # Update distance matrix for a user
         else:
             distanceMatrix = self.similarityMeasure.matrix_distance()
-            """
-            distanceMatrix = self.similarityMeasure.updateDistanceMatrix(
-                self.updateUsers, distanceMatrix)
-            """
 
-        print(distanceMatrix)
-
-        # Drop irrelevant parameters to explain communities
-        #self.similarityMeasure.data.drop(['origin','source_id', '_id'], axis=1, inplace=True)
-
-        # They are useful now
-        #self.similarityMeasure.data.drop(['origin','source_id'], axis=1, inplace=True)
-        #self.similarityMeasure.data = self.similarityMeasure.data.rename(columns={"userid":"user"})
-
-        # return self.similarityMeasure.distanceMatrix
         return distanceMatrix
 
     def clusteringExportFileRoute(self, percentageExplainability, algorithmName):
         abspath = os.path.dirname(__file__)
-        #relpath = "clustering/" + self.perspective['name'] + " " + "(" + self.perspective['algorithm']['name'] + ")"
-        #relpath = "clustering/" + '(GAMGame_stories_RN_UNITO) ' + self.perspective['name'] + " "
-        # relpath = "clustering/" + '(GAM RN) ' + self.perspective['name'] + " "
         relpath = "clustering/"
-        #relpath += "clusters generated/" + self.perspective["algorithm"]["name"] + "/"
-        # relpath += "clusters Mine/" + self.perspective["algorithm"]["name"] + "/"
-
-        print("clustering export file route")
 
         relpath += self.perspective['name'].replace(
             "Similar-", "S-").replace("Same-", "E-") + " "
@@ -254,15 +188,6 @@ class CommunityModel():
         # Fill nan values (causes error in the visualization)
         data = data.fillna("")
 
-
-        print("perform clustering data")
-        print("data columns:")
-        print(list(data.columns))
-        print("\n")
-        print("data")
-        print(data)
-        print("\n")
-
         # For debugging (delete later)
         data['userNameAuxiliar'] = data['userid']
         data['real_index'] = data.index
@@ -286,9 +211,7 @@ class CommunityModel():
 
         # Export to json
         data.reset_index(inplace=True)
-        print("data community model")
-        #print(data[['userid','community_dominantArtworks']])
-        print("\n")
+
         exportFile = self.clusteringExportFileRoute(
             percentageExplainability, self.perspective['algorithm']['name'])
         jsonGenerator = CommunityJsonGenerator(
@@ -313,16 +236,8 @@ class CommunityModel():
 # --------------------------------------------------------------------------------------------------------------------------
 
     def saveDatabase(self, jsonCommunity):
-        """
-        daoCommunityModelVisualization = DAO_visualization()
-        daoCommunityModelVisualization.drop()
-        daoCommunityModelVisualization.insertJSON(jsonCommunity)
-        """
-
         # Store distance matrix data
-        # https://pynative.com/python-serialize-numpy-ndarray-into-json/
         daoDistanceMatrixes = DAO_db_distanceMatrixes()
-        # daoDistanceMatrixes.drop()
         daoDistanceMatrixes.updateDistanceMatrix(
             {'perspectiveId': self.perspective['id'], 'distanceMatrix': self.similarityMeasure.distanceMatrix.tolist()})
 
@@ -333,8 +248,7 @@ class CommunityModel():
             {'perspectiveId': self.perspective['id']})
         daoCommunityModelCommunity.dropFullList(
             {'perspectiveId': self.perspective['id']})
-        # daoCommunityModelCommunity.dropFullList()
-
+            
         # humanize some keys and values
         self.jsonCommunity = copy.deepcopy(jsonCommunity)
         humanizedJsonCommunity = self.humanizator(jsonCommunity)

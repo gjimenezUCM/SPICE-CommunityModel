@@ -81,5 +81,12 @@ class DAO_db_distanceMatrixes(DAO_db):
         """
         self.db_distanceMatrixes.delete_one(distanceMatrixJSON)
 
+    def deleteDistanceMatrixByPerspectiveId(self, perspectiveId):
+        """
+        :Parameters:
+            distanceMatrixJSON: DistanceMatrix/s, Type: <class 'dict'> OR List[<class 'dict'>]
+        """
+        self.db_distanceMatrixes.delete_one({'perspectiveId': perspectiveId})
+
         
         

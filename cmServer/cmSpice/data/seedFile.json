@@ -1,0 +1,684 @@
+{
+	"user_attributes": [
+		{
+			"att_name": "demographics.Gender",
+			"att_type": "String"
+		},
+		{
+			"att_name": "demographics.Age",
+			"att_type": "String"
+		},
+		{
+			"att_name": "demographics.RelationshipWithArt",
+			"att_type": "String"
+		},
+		{
+			"att_name": "demographics.RelationshipWithMuseum",
+			"att_type": "String"
+		},
+		{
+			"att_name": "demographics.ContentInLIS",
+			"att_type": "String"
+		}
+	],
+	"interaction_similarity_functions": [
+		{
+			"sim_function": {
+				"name": "ExtendedPlutchikEmotionSimilarity",
+				"params": [],
+				"on_attribute": {
+					"att_name": "interest.itMakesMeThinkAbout.emotions",
+					"att_type": "dict"
+				},
+				"interaction_object": {
+					"att_name": "id",
+					"att_type": "String"
+				}
+			}
+		},
+		{
+			"sim_function": {
+				"name": "SentimentSimilarityDAO",
+				"params": [],
+				"on_attribute": {
+					"att_name": "interest.itMakesMeThinkAbout.sentiment",
+					"att_type": "dict"
+				},
+				"interaction_object": {
+					"att_name": "id",
+					"att_type": "String"
+				}
+			}
+		},
+    {
+			"sim_function": {
+				"name": "ValuesDictSimilarity",
+				"params": [],
+				"on_attribute": {
+					"att_name": "interest.itMakesMeThinkAbout.values",
+					"att_type": "dict"
+				},
+				"interaction_object": {
+					"att_name": "id",
+					"att_type": "String"
+				}
+			}
+		}
+	],
+	"artwork_attributes": [
+		{
+			"on_attribute": {
+				"att_name": "Inventary",
+				"att_type": "String"
+			},
+			"sim_function": [
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": true
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Collection",
+				"att_type": "String"
+			},
+			"sim_function": [
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": true
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "author",
+				"att_type": "String"
+			},
+			"sim_function": [
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": true
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "year",
+				"att_type": "float"
+			},
+			"sim_function": [
+				{
+					"name": "DecadeSimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "NumberSimilarityDAO",
+					"params": [],
+					"default": false
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Artwork_start_date",
+				"att_type": "float"
+			},
+			"sim_function": [
+				{
+					"name": "NumberSimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Artwork_end_date",
+				"att_type": "float"
+			},
+			"sim_function": [
+				{
+					"name": "NumberSimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Artist_birth_date",
+				"att_type": "float"
+			},
+			"sim_function": [
+				{
+					"name": "NumberSimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Artist_death_date",
+				"att_type": "float"
+			},
+			"sim_function": [
+				{
+					"name": "NumberSimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Gender",
+				"att_type": "String"
+			},
+			"sim_function": [
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": true
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Artist_country",
+				"att_type": "String"
+			},
+			"sim_function": [
+				{
+					"name": "TaxonomySimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Artist_secondary_country",
+				"att_type": "String"
+			},
+			"sim_function": [
+				{
+					"name": "TaxonomySimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Artwork_Artistic_Movement",
+				"att_type": "String"
+			},
+			"sim_function": [
+				{
+					"name": "TaxonomySimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Secondary_Artwork_Artistic_Movement",
+				"att_type": "String"
+			},
+			"sim_function": [
+				{
+					"name": "TaxonomySimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Technique",
+				"att_type": "String"
+			},
+			"sim_function": [
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": true
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Artwork_type",
+				"att_type": "String"
+			},
+			"sim_function": [
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": true
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Size_height",
+				"att_type": "float"
+			},
+			"sim_function": [
+				{
+					"name": "NumberSimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Size_width",
+				"att_type": "float"
+			},
+			"sim_function": [
+				{
+					"name": "NumberSimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Size_depth",
+				"att_type": "String"
+			},
+			"sim_function": [
+				{
+					"name": "NumberSimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "Materials",
+				"att_type": "String"
+			},
+			"sim_function": [
+        {
+					"name": "OntologySimilarity",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "TaxonomySimilarityDAO",
+					"params": [],
+					"default": false
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		},
+		{
+			"on_attribute": {
+				"att_name": "iconclassArrayIDs",
+				"att_type": "List"
+			},
+			"sim_function": [
+				{
+					"name": "IconClassSimilarityDAO",
+					"params": [],
+					"default": true
+				},
+				{
+					"name": "EqualSimilarityDAO",
+					"params": [],
+					"default": false
+				}
+			]
+		}
+	],
+	"algorithm": [
+		{
+			"name": "kmedoids",
+			"params": [],
+			"default": false
+		},
+		{
+			"name": "agglomerative",
+			"params": [],
+			"default": true
+		},
+		{
+			"name": "affinityPropagation",
+			"params": [],
+			"default": false
+		},
+		{
+			"name": "birch",
+			"params": [],
+			"default": false
+		},
+		{
+			"name": "dbscan",
+			"params": [],
+			"default": false
+		},
+		{
+			"name": "fuzzyCMeans",
+			"params": [],
+			"default": false
+		},
+		{
+			"name": "markov",
+			"params": [],
+			"default": false
+		},
+		{
+			"name": "optics",
+			"params": [],
+			"default": false
+		},
+		{
+			"name": "spectral",
+			"params": [],
+			"default": false
+		}
+	],
+	"artworks": [
+        {
+            "name": "03 - F",
+            "id": "39416"
+        },
+        {
+            "name": "107. Aktion (prima e seconda parte)",
+            "id": "41209"
+        },
+        {
+            "name": "Angles",
+            "id": "39352"
+        },
+        {
+            "name": "Anticoli sole a picco (Paesaggio di Anticoli)",
+            "id": "39648"
+        },
+        {
+            "name": "Aracne",
+            "id": "39182"
+        },
+        {
+            "name": "Asfissia! (parte sinistra)",
+            "id": "39175"
+        },
+        {
+            "name": "Autoritratto in forma di gufo",
+            "id": "35381"
+        },
+        {
+            "name": "Beethoven (Beethoven giovinetto)",
+            "id": "35465"
+        },
+        {
+            "name": "Capanni sul mare",
+            "id": "35362"
+        },
+        {
+            "name": "Composition T. 50 - 5",
+            "id": "35249"
+        },
+        {
+            "name": "Contadini al sole",
+            "id": "35227"
+        },
+        {
+            "name": "Dans mon pays",
+            "id": "39347"
+        },
+        {
+            "name": "Daphne (Daphne a Pavarolo)",
+            "id": "35323"
+        },
+        {
+            "name": "(Der) Matrose Fritz M\u00faller aus Pieschen",
+            "id": "35229"
+        },
+        {
+            "name": "Dopo il duello",
+            "id": "35222"
+        },
+        {
+            "name": "L'edera",
+            "id": "35224"
+        },
+        {
+            "name": "Estate",
+            "id": "35499"
+        },
+        {
+            "name": "I Santi Anargiri",
+            "id": "39364"
+        },
+        {
+            "name": "I funerali di Tiziano",
+            "id": "35279"
+        },
+        {
+            "name": "Il pescatorello",
+            "id": "39200"
+        },
+        {
+            "name": "Il torrente d'inverno",
+            "id": "35310"
+        },
+        {
+            "name": "La femme de Claude (L'adultera)",
+            "id": "35217"
+        },
+        {
+            "name": "La pittrice",
+            "id": "35456"
+        },
+        {
+            "name": "La primavera",
+            "id": "35374"
+        },
+        {
+            "name": "La ragazza rossa (Testa di donna dai capelli rossi)",
+            "id": "35225"
+        },
+        {
+            "name": "La Signora di Monza col ritratto dell'amante Egidio. a) La monaca di Monza; b) L'amante Egidio.",
+            "id": "35287"
+        },
+        {
+            "name": "La Sirena (Sirena) (Abisso verde)",
+            "id": "39138"
+        },
+        {
+            "name": "Le allieve",
+            "id": "35459"
+        },
+        {
+            "name": "Le tre finestre (La pianura della torre)",
+            "id": "35330"
+        },
+        {
+            "name": "Le baiser",
+            "id": "35230"
+        },
+        {
+            "name": "Mafai con il gatto",
+            "id": "35246"
+        },
+        {
+            "name": "Marina",
+            "id": "39384"
+        },
+        {
+            "name": "Maternit\u00e0",
+            "id": "35364"
+        },
+        {
+            "name": "Mercato Vecchio di Firenze",
+            "id": "35288"
+        },
+        {
+            "name": "Miracolo (Olocausto)",
+            "id": "35412"
+        },
+        {
+            "name": "Orange Car Crash (5 Deaths 11 Times in Orange) (Orange Disaster)",
+            "id": "35567"
+        },
+        {
+            "name": "Piccola composizione (Fantome incantato)",
+            "id": "39426"
+        },
+        {
+            "name": "Pugilatore",
+            "id": "35245"
+        },
+        {
+            "name": "Ragazza con scodella (Interno)  (Mattino)",
+            "id": "35321"
+        },
+        {
+            "name": "Ritorno alla stalla (La ritirata)",
+            "id": "35433"
+        },
+        {
+            "name": "Sponde del Po",
+            "id": "35445"
+        },
+        {
+            "name": "Strada laterale",
+            "id": "39425"
+        },
+        {
+            "name": "Suonatore di chitarra (Commedia)",
+            "id": "39427"
+        },
+        {
+            "name": "Un Natale! Al Pio Albergo Trivulzio",
+            "id": "35308"
+        },
+        {
+            "name": "Via a Parigi",
+            "id": "35360"
+        },
+        {
+            "name": "Saffo (Erma di Saffo)",
+            "id": "35208"
+        },
+        {
+            "name": "Ritratto di Carolina Zucchi, (La malata), (Carolina Zucchi a letto)",
+            "id": "35209"
+        },
+        {
+            "name": "Paesaggio con cascata (Sottobosco con monaco)",
+            "id": "35210"
+        },
+        {
+            "name": "Bimba dormente (Bimba addormentata)",
+            "id": "35211"
+        },
+        {
+            "name": "La morte del conte Josselin di Montmorency",
+            "id": "35212"
+        },
+        {
+            "name": "Il diradarsi di un temporale",
+            "id": "35213"
+        },
+        {
+            "name": "Natura morta con salame",
+            "id": "35232"
+        },
+        {
+            "name": "Paese",
+            "id": "35233"
+        },
+        {
+            "name": "Intervista con la materia",
+            "id": "35236"
+        },
+        {
+            "name": "L'aratura",
+            "id": "35237"
+        },
+        {
+            "name": "Abstraction with Brown Burlap (Sacco)",
+            "id": "35250"
+        }
+    ],
+  "BeliefStructure": false
+}

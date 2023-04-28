@@ -1,0 +1,15 @@
+version: '3.3'
+
+networks:
+  spice-mncn:
+
+services:
+  mongodb:
+    networks:
+      spice-mncn:
+  app:
+    networks:
+      spice-mncn:
+  cm:
+    networks:
+      spice-mncn:

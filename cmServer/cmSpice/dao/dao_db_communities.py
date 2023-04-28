@@ -64,6 +64,15 @@ class DAO_db_community(DAO_db):
         for community in temp["communities"]:
             self.db_communities.insert_one(community)
 
+    def deleteFileByPerspectiveId(self, perspectiveId):
+        """
+        Inserts json file to 'API Vis DB' and all communities from file to db_communities
+            :Parameters:
+                fileId: id, Type: <class 'dict'>
+                communityJSON: Community, Type: <class 'dict'>
+        """
+        response = self.db_fullListCommunities.delete_one({'perspectiveId': perspectiveId})
+
     def getFileIndex(self):
         data = self.db_fullListCommunities.find({}, {"fileId": 1, "_id": 0})
         data = loads(dumps(list(data)))
@@ -80,7 +89,7 @@ class DAO_db_community(DAO_db):
         :Return:
             File List
         """
-        data = self.db_fullListCommunities.find({"fileId": fileId}, {"_id": 0})
+        data = self.db_fullListCommunities.find({"perspectiveId": fileId}, {"_id": 0})
         data = loads(dumps(list(data)))
         if len(data) == 0:
             return {}
@@ -103,12 +112,15 @@ class DAO_db_community(DAO_db):
         data = self.db_communities.find({}, {"_id": 0})
         return loads(dumps(list(data)))
     
-    def getCommunitiesPerspective(self, perspectiveId):
+    def getCommunitiesPerspective(self, perspectiveId, community_type="implicit"):
         """
         :Return:
             Communities, Type: List[<class 'dict'>]
         """
-        data = self.db_communities.find({"perspectiveId": perspectiveId, "community-type": "implicit"}, {"_id": 0})
+        if community_type == "all":
+            data = self.db_communities.find({"perspectiveId": perspectiveId}, {"_id": 0})
+        else:
+            data = self.db_communities.find({"perspectiveId": perspectiveId, "community-type": community_type}, {"_id": 0})
         return loads(dumps(list(data)))
         
     def getCommunity(self, communityId):

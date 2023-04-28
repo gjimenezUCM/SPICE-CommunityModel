@@ -63,3 +63,33 @@ module.exports.getData  = function getData(path)  {
         }
     })
 };
+
+
+module.exports.deleteData  = function deleteData(perspectiveId, path)  {
+    let port = process.env.CM_DOCKER_PORT || 8090;
+    let url = "http://cm:" + port + path + "/" + perspectiveId;
+
+    return new Promise((resolve, reject) => {
+        try {
+
+            axios.delete(url)
+                .then((response) => {
+                    // console.log("data: "+ response.data);
+                    // console.log("status: " + response.status);
+                    // console.log("statusText: "+ response.statusText);
+                    resolve(response.status);
+                })
+                .catch((error) => {
+                    if (error.response.status === 404){
+                        resolve(error.response.status)
+                    }
+                    reject("deleteData.Promise.axios.get: " + error);
+                });
+
+
+        } catch (error) {
+            console.log("deleteData.Promise.axios:" + error)
+            reject("deleteData.Promise.axios:" + error);
+        }
+    })
+};

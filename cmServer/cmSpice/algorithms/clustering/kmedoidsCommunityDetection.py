@@ -34,11 +34,6 @@ class KmedoidsCommunityDetection:
         kmedoids = KMedoids(metric='precomputed',method='pam', n_clusters=n_clusters, init='k-medoids++')
         kmedoids.fit(distanceMatrix)
         
-        # Sometimes, kmedoids returns a bugged result with missing intermediate clustersç
-        # Example (8 is left): 
-        # [14 11  2  7  0  3 12 11  3  1  5 13  3  3  3  5  0  3 11 11  2  6  4  1
-        # 12  7  9  3  3  9  4  0 10  0  6  0  7 12  6  6  0  4  3]
-        # Rename the ones above to a lower id
         uniqueLabels = set(kmedoids.labels_)      
         uniqueLabels = sorted(uniqueLabels)
         kmedoids.labels_ = [uniqueLabels.index(label) for label in kmedoids.labels_]

@@ -24,17 +24,8 @@ class IconClassSimilarityDAO(SimilarityDAO):
     def elemLayer(self,elem):
         return len(elem)
     
-    """
-    def getIconClassList2(self,iconClassString):
-        iconClassList = iconClassString.split("; ")
-        iconClassList = [iconClass.split(" ")[0] for iconClass in iconClassList if iconClass]
-        return iconClassList  
-    
-    def getIconClassList(self, elem):
-        iconClassString = self.data.loc[elem][self.similarityColumn]
-        return self.getIconClassList2(iconClassString)
-    
-    """
+    def getIconclassParent(self, elemA, elemB):
+        return os.path.commonprefix([elemA, elemB])
     
     def distanceItems(self,elemA,elemB):
         """Method to obtain the distance between two taxonomy members.
@@ -51,21 +42,9 @@ class IconClassSimilarityDAO(SimilarityDAO):
         double
             Similarity between the two taxonomy members.
         """
-        """       
-        print("elemA: " + elemA)
-        print("elemB: " + elemB)
-        print("commonAncestor: " + commonAncestor)
-        print("distance: " + str(1 - sim))
-        print("\n")
-        """
-        """
-        elemA = elemA.split("(")[0]
-        elemB = elemB.split("(")[0]
-        """
         
         # Get first common characters 
-        # https://stackoverflow.com/questions/18715688/find-common-substring-between-two-strings
-        commonAncestor = os.path.commonprefix([elemA, elemB])
+        commonAncestor = self.getIconclassParent(elemA, elemB)
         maxLayer = max(self.elemLayer(elemA), self.elemLayer(elemB))
         if (maxLayer <= 0):
             sim = 0
@@ -93,7 +72,7 @@ class IconClassSimilarityDAO(SimilarityDAO):
         longestPrefix = ""
         longestPrefixElemB = ""
         for elemB in iconClassListB:
-            prefix = os.path.commonprefix([elemA, elemB])
+            prefix = self.getIconclassParent(elemA, elemB)
             if (len(prefix) > len(longestPrefix) or (len(prefix) == len(longestPrefix) and len(longestPrefixElemB) > len(elemB))):
                 longestPrefix = prefix
                 longestPrefixElemB = elemB
@@ -195,10 +174,6 @@ class IconClassSimilarityDAO(SimilarityDAO):
     def extractDominantValue(self, iconClassListA, iconClassListB, artworkA, artworkB):
         explainable_iconclassValues = []
         
-        """
-        iconClassListA = self.getIconClassList2(iconClassListA)
-        iconClassListB = self.getIconClassList2(iconClassListB)
-        """
         
         try:
 
@@ -206,14 +181,12 @@ class IconClassSimilarityDAO(SimilarityDAO):
             for i in range(number):
                 elemA = self.distanceList[i]['elemA']
                 longestPrefixElemB = self.distanceList[i]['elemB']
-                commonParent = os.path.commonprefix([elemA, longestPrefixElemB])
+                commonParent = self.getIconclassParent(elemA, longestPrefixElemB)
                 maxLayer = max(self.elemLayer(elemA), self.elemLayer(longestPrefixElemB))
                 parentLayer = self.elemLayer(commonParent)
-                # if (parentLayer != 0 and parentLayer + 3 >= maxLayer):
-                if (parentLayer != 0):
-                    # Previous explanation
-                    #explainable_iconclassValues.append(commonParent)
+                commonParent = commonParent.split("(")[0]
 
+                if (parentLayer != 0):
                     # New explanation: add information about the iconclassIDs (children) from which this new one (parent) is derived 
                     commonParentDict = {}
                     commonParentDict[commonParent] = {}
@@ -224,34 +197,11 @@ class IconClassSimilarityDAO(SimilarityDAO):
 
                     explainable_iconclassValues.append(commonParentDict)
             
-            # for elemA in iconClassListA:
-            #     longestPrefixElemB = self.iconClassBestMatch(elemA, iconClassListB)
-            #     commonParent = os.path.commonprefix([elemA, longestPrefixElemB])
-            #     maxLayer = max(self.elemLayer(elemA), self.elemLayer(longestPrefixElemB))
-            #     if (self.elemLayer(commonParent) + 2 >= maxLayer):
-            #         # Previous explanation
-            #         #explainable_iconclassValues.append(commonParent)
-
-            #         # New explanation: add information about the iconclassIDs (children) from which this new one (parent) is derived 
-            #         commonParentDict = {}
-            #         commonParentDict[commonParent] = {}
-            #         commonParentDict[commonParent][elemA] = [ artworkA['id'] ]
-            #         if (longestPrefixElemB not in commonParentDict[commonParent]):
-            #             commonParentDict[commonParent][longestPrefixElemB] = []
-            #         commonParentDict[commonParent][longestPrefixElemB].append( artworkB['id'] )
-
-            #         explainable_iconclassValues.append(commonParentDict)
 
         except Exception as e:
             print("exception")
             print(e)
-            
-            """
-            print("longestPrefixElemB: " + str(longestPrefixElemB))
-            print("commonParent: " + str(commonParent))
-            print("maxLayer: " + str(maxLayer))
-            """
-            
+
         
         return explainable_iconclassValues
     

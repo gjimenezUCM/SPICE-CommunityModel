@@ -1,0 +1,18 @@
+# Extension for deploying using Traefik as inverse proxy
+#
+# It Enhances Traefik base configuration (in traefik.yml) para
+# for deploying services with a path different from /
+# Useful if we have several deployments for the same
+# URL ($SERVER_PUBLIC_NAME) in differente paths (in our case, http://$SERVER_PUBLIC_NAME/museumName)
+#
+# Add this .yml and define a new environment variables
+# $SERVER_PUBLIC_URL, with the URL ("/museumName" in this example)
+
+version: '3.3'
+
+services:
+    app:
+        labels:
+            - "traefik.http.routers.${TRAEFIK_SERVICE_ID}.rule=Host(`${SERVER_PUBLIC_NAME}`) && PathPrefix(`${SERVER_PUBLIC_URL}/`)"
+            - "traefik.http.routers.${TRAEFIK_SERVICE_ID}.middlewares=${TRAEFIK_SERVICE_ID}-stripprefix"
+            - "traefik.http.middlewares.${TRAEFIK_SERVICE_ID}-stripprefix.stripprefix.prefixes=${SERVER_PUBLIC_URL}"

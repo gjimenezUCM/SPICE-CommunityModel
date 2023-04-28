@@ -81,5 +81,6 @@ class DAO_db_flags(DAO_db):
         # self.db_flags.delete_one(flagJSON)
         #self.db_flags.delete_one({'id': flagId})
         self.db_flags.delete_one({'perspectiveId': flagJSON['perspectiveId'], 'userid': flagJSON['userid']})
-        
-        
+
+    def deleteFlagByPerspectiveId(self, perspectiveId):
+        self.db_flags.delete_many({'perspectiveId': perspectiveId})

@@ -1,0 +1,15 @@
+version: '3.3'
+
+networks:
+  spice-gam:
+
+services:
+  mongodb:
+    networks:
+      spice-gam:
+  app:
+    networks:
+      spice-gam:
+  cm:
+    networks:
+      spice-gam:

@@ -9,6 +9,7 @@ from cmSpice.algorithms.similarity.similarityDAO import SimilarityDAO
 from cmSpice.algorithms.similarity.complexSimilarityDAO import ComplexSimilarityDAO
 from cmSpice.dao.dao_json import DAO_json
 from cmSpice.utils.dataLoader import DataLoader
+from cmSpice.utils.artworksLoader import ArtworkLoader
 
 import statistics
 from statistics import mode
@@ -109,6 +110,8 @@ class InteractionSimilarityDAO(SimilarityDAO):
             # TODO: Change by Logger
             print("Unable load artworks.json")
             return None
+        # loader = ArtworkLoader(os.environ['TYPE'], True, "https://api2.mksmart.org/object/2a2a5c9a-a8ce-4977-ba09-f4134c95d744", "0a7eccb2-997d-47d0-8c9f-05be9afc9772")
+        # outputData = loader.getArtworks()
     
     def getInteractionObjectData(self):
         daoJson = self.getInteractionObjectDAO()

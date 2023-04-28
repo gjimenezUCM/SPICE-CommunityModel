@@ -36,8 +36,8 @@ class MarkovCommunityDetection(GraphCommunityDetection):
         parameter = 1
         bestResult = 999
         best = [-1]
-        while len(set(clusters)) < n_clusters and parameter < 500:
-            parameter += 0.1
+        while len(set(clusters)) < n_clusters and parameter < 20:
+            parameter += 0.05
             # print(adjMatrix)
 
 
